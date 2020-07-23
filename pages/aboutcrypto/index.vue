@@ -1,9 +1,10 @@
 <template>
   <div class="overflow-hidden">
     <Header />
-    <section
-      class="flex flex-col w-screen bg-gray-400 justify-around mt-10 py-20 lg:flex-row"
-    >
+    <div class="flex justify-center py-20">
+      <img src="~/assets/images/info.svg" alt="Info" class="w-40 xl:w-64" />
+    </div>
+    <section class="flex flex-col w-screen bg-gray-400 justify-around mt-10 py-20 lg:flex-row">
       <div class="flex flex-col justify-center items-center">
         <font-awesome-icon :icon="['fas', 'briefcase']" class="text-6xl" />
         <h2 class="text-2xl mt-5">Info</h2>
@@ -20,14 +21,12 @@
         <p class="text-lg mt-2">Our info is always up to date</p>
       </div>
     </section>
-    <section>
-      <Card :data="data" />
-    </section>
+
+    <Card :data="data" />
   </div>
 </template>
 
 <script>
-import axios from "@nuxtjs/axios";
 import Header from "@/components/Header/Header";
 import Card from "@/components/Cards/Card";
 
@@ -38,13 +37,12 @@ export default {
     );
     return { data: data.coins.slice(0, 5) };
   },
-
-  methods: {
-    getData() {}
-  },
   components: {
     Header,
-    Card
-  }
+    Card,
+  },
+  methods: {
+    getData() {},
+  },
 };
 </script>
