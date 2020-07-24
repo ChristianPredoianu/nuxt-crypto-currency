@@ -5,7 +5,9 @@
       v-for="cryptoInfo in data"
       :key="cryptoInfo.id"
     >
-      <img :src="cryptoInfo.iconUrl" alt="Crypto image" class="w-24 xl:bg-cover xl:w-40" />
+      <div class="h-32 xl:h-48">
+        <img :src="cryptoInfo.iconUrl" alt="Crypto image" class="w-24 xl:bg-cover xl:w-40" />
+      </div>
       <h3 class="text-3xl mt-10 mb-5">{{ cryptoInfo.name }}</h3>
       <button
         class="bg-blue-400 px-10 my-5 py-4 text-xl rounded-lg cursor-pointer focus:outline-none hover:bg-blue-600"

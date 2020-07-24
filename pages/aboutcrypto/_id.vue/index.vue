@@ -30,11 +30,11 @@
           />
 
           <h3 class="lext-xl xl:text-2xl">Total supply:</h3>
-          <p class="text-lg mb-5 xl:mb-2">{{ cryptoDataById.totalSupply }}</p>
+          <p class="text-lg mb-5 xl:mb-2">{{ formatDecimals(this.cryptoDataById.totalSupply)}}</p>
           <h3 class="text-xl xl:text-2xl">Circulating supply:</h3>
           <p class="text-lg mb-5 xl:mb-2">{{ parseInt(cryptoDataById.circulatingSupply) }}</p>
           <h3 class="text-xl xl:text-2xl">Price:</h3>
-          <p class="text-lg mb-5 xl:mb-2">{{ parseInt(cryptoDataById.price) }} &#36;</p>
+          <p class="text-lg mb-5 xl:mb-2">{{ formatDecimals(this.cryptoDataById.price) }} &#36;</p>
         </section>
         <div
           class="py-20 pointer lg:flex lg:flex-col lg:items-center xl:absolute xl:bottom-0 xl:left-0 xl:ml-20 xl:pb-0"
@@ -76,8 +76,18 @@ export default {
       cryptoDataById: {},
       paragraph: "",
       date: "",
+      formatElementDecimals: null,
     };
   },
+
+  methods: {
+    formatDecimals(element) {
+      let result = parseFloat(element);
+      result = parseFloat((Math.round(result * 100) / 100).toFixed(2));
+      return (this.formatElementDecimals = result);
+    },
+  },
+
   computed: {
     getDataById() {
       const result = this.data.find(
@@ -94,12 +104,8 @@ export default {
         .replace(/<\/?h3[^>]*>/g, "");
     },
     formatTimeStamp() {
-      const date = new Date(this.cryptoDataById.firstSeen);
-      let hours = date.getHours();
-      let minutes = `  ${date.getMinutes()}`;
-      let seconds = `${date.getSeconds()}`;
-      const sun = `${hours}:${minutes.substr(-2)}:${seconds.substr(-2)}`;
-      this.date = sun;
+      const date = new Date(this.cryptoDataById.firstSeen).toDateString();
+      this.date = date;
     },
   },
 
