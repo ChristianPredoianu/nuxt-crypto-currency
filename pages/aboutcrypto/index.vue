@@ -1,14 +1,12 @@
 <template>
-  <div class="overflow-hidden">
+  <div class="overflow-hidden dark:bg-blue-900">
     <Header />
-    <button @click="toggle('light')">light mode</button>
-    <button @click="toggle('dark')">dark mode</button>
-    <div class="dark:bg-black flex justify-center py-20">
+    <div class="dark:bg-blue-900 flex justify-center py-20">
       <img src="~/assets/images/info.svg" alt="Info" class="w-40 xl:w-64" />
     </div>
     <h1 class="dark:text-white text-center text-5xl py-10">We provide</h1>
     <section
-      class="flex flex-col w-screen bg-gray-400 justify-around mt-10 py-20 lg:flex-row"
+      class="dark:bg-gray-600 flex flex-col justify-around w-screen bg-gray-400 py-20 mt-10 lg:flex-row"
     >
       <div class="flex flex-col justify-center items-center">
         <font-awesome-icon :icon="['fas', 'briefcase']" class="text-6xl" />
@@ -28,9 +26,9 @@
     </section>
     <section class="md:flex justify-center">
       <div
-        class="dark:bg-gray-700 w-full text-center text-5xl my-20 py-20 bg-blue-100 lg:w-2/3"
+        class="dark:bg-gray-600 w-full text-center text-5xl mt-20 mb-10 py-20 bg-blue-100 lg:w-2/3"
       >
-        <h2>Top five cryptocurrencies</h2>
+        <h2 class="text-2xl xl:text-4xl">Top five cryptocurrencies</h2>
       </div>
     </section>
     <Card :data="data" />
@@ -47,22 +45,18 @@ export default {
     const { data } = await $axios.$get(
       "https://api.coinranking.com/v1/public/coins"
     );
+    console.log(data);
     return { data: data.coins.slice(0, 5) };
   },
-  /*  data() {
-    return {
-      $colorModePreferance: this.$store.dispatch("toggle")
-    };
-  }, */
   components: {
     Header,
-    Card
+    Card,
   },
   methods: {
-    ...mapActions(["toggle"])
+    ...mapActions(["colorMode"]),
   },
   mounted() {
-    this.$colorModePreferance = this.$store.dispatch("toggle");
-  }
+    this.$colorModePreferance = this.$store.dispatch("colorMode");
+  },
 };
 </script>

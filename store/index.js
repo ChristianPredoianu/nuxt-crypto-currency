@@ -3,7 +3,7 @@ export const state = () => ({
 });
 
 export const mutations = {
-  toggle(state, payload) {
+  colorMode(state, payload) {
     state.mode = payload;
     if (state.mode === "light") {
       this.$colorMode.preference = state.mode;
@@ -14,7 +14,7 @@ export const mutations = {
 };
 
 export const actions = {
-  toggle(context, payload) {
-    context.commit("toggle", payload);
+  colorMode(context, payload) {
+    context.commit("colorMode", payload);
   }
 };

@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export default {
   /*
    ** Nuxt rendering mode
@@ -14,14 +16,14 @@ export default {
    ** See https://nuxtjs.org/api/configuration-head
    */
   head: {
-    title: process.env.npm_package_name || "",
+    title: "Cryptocurrency info app",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       {
         hid: "description",
         name: "description",
-        content: process.env.npm_package_description || ""
+        content: "A cryptocurrency information app showing some info"
       }
     ],
     link: [
@@ -88,5 +90,17 @@ export default {
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
    */
-  build: {}
+  build: {},
+  purgeCSS: {
+    whitelist: ["dark-mode"]
+  },
+  generate: {
+    routes: [
+      "/aboutcrypto/1",
+      "/aboutcrypto/2",
+      "/aboutcrypto/3",
+      "/aboutcrypto/4",
+      "/aboutcrypto/8"
+    ]
+  }
 };
